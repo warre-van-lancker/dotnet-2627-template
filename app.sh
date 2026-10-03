@@ -41,7 +41,7 @@ COPY --from=build /app/publish .
 # Configure ASP.NET to listen on port 5001 inside the container
 ENV ASPNETCORE_URLS=http://+:5001
 ENV ASPNETCORE_ENVIRONMENT=Development
-
+ENV ASPNETCORE_HTTPS_PORT=""
 EXPOSE 5001
 
 # Entry point starts the compiled Rise.Server assembly
