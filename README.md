@@ -1,4 +1,4 @@
-# Rise - [GROUPNAME]
+# Rise - TEST
 
 ## Team Members
 
