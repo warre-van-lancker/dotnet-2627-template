@@ -1,11 +1,17 @@
 node {
-    stage('Preparation') {
-        catchError(buildResult: 'SUCCESS') {
-            sh 'docker stop rise-running'
-            sh 'docker rm rise-running'
-        }
+    stage('Checkout') {
+        // Clones the repo containing app.sh and the source code
+        checkout scm
     }
-    stage('Build') {
+
+    stage('Preparation') {
+        // Force-remove running or stopped container without erroring if it doesn't exist
+        sh 'docker rm -f rise-running || true'
+    }
+
+    stage('Build & Run') {
+        // Ensure script has execution permissions and run it
+        sh 'chmod +x ./app.sh'
         sh 'bash ./app.sh'
     }
 }
