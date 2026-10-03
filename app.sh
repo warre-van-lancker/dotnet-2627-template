@@ -10,6 +10,7 @@ mkdir -p tempdir
 echo "Staging source files..."
 cp Rise.sln tempdir/
 cp -r src tempdir/
+cp -r tests tempdir/
 
 # 3. Generate the Multi-Stage Dockerfile
 echo "Generating Dockerfile..."
@@ -21,6 +22,7 @@ WORKDIR /app
 # Copy solution and project definitions first to leverage layer caching for restore
 COPY Rise.sln ./
 COPY src/ ./src/
+COPY tests/ ./tests/
 
 # Restore dependencies for all projects in the solution
 RUN dotnet restore Rise.sln
